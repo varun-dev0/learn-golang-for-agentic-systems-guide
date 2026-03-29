@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Go for Agentic Systems &mdash; A Complete Learning Guide</title>
+<title>Learn Go for Building Agentic Systems &mdash; A Beginner's Guide</title>
 <style>
   :root {
     --bg: #0f1117;
@@ -323,7 +323,7 @@
     <a href="#concurrency">Concurrency</a>
     <a href="#patterns">Patterns</a>
     <a href="#agentic">Agentic Systems</a>
-    <a href="#tprm">TPRM</a>
+
   </div>
 </nav>
 
@@ -370,13 +370,8 @@
     <a href="#multi-agent">20 &middot; Multi-Agent Orchestration</a>
     <a href="#memory">21 &middot; Agent Memory &amp; State</a>
     <a href="#guardrails">22 &middot; Guardrails &amp; Observability</a>
-  </div>
-  <div class="sidebar-section">
-    <div class="sidebar-section-title">TPRM Domain</div>
-    <a href="#tprm">23 &middot; TPRM Overview</a>
-    <a href="#tprm-agents">24 &middot; TPRM Agent Design</a>
-    <a href="#tprm-architecture">25 &middot; Full Architecture</a>
-    <a href="#resources">26 &middot; Resources</a>
+    <a href="#resources">23 &middot; Resources</a>
+    <a href="#quick-ref">24 &middot; Quick Reference</a>
   </div>
 </aside>
 
@@ -404,7 +399,7 @@
     </div>
     <div class="prereq-card">
       <div class="label">Target System</div>
-      <div class="value target">TPRM Multi-Agent</div>
+      <div class="value target">Multi-Agent Systems</div>
     </div>
   </div>
 </div>
@@ -451,21 +446,21 @@ go env GOROOT</code></pre>
 
   <p>Every Go project begins with a single command: <code>go mod init</code>. This creates a file called <code>go.mod</code>, which is the &ldquo;identity card&rdquo; of your project. It declares two things: your project&rsquo;s unique name (called the <strong>module path</strong>) and the list of external libraries your project depends on.</p>
 
-  <p>Think of <code>go.mod</code> like a recipe card at the top of your cookbook. It says &ldquo;This is the TPRM Agent System cookbook, and we need flour (an HTTP library), sugar (a JSON parser), and eggs (a database driver) to make it work.&rdquo; Anyone who picks up your project can run one command and Go will fetch all the ingredients automatically.</p>
+  <p>Think of <code>go.mod</code> like a recipe card at the top of your cookbook. It says &ldquo;This is the Agent System cookbook, and we need flour (an HTTP library), sugar (a JSON parser), and eggs (a database driver) to make it work.&rdquo; Anyone who picks up your project can run one command and Go will fetch all the ingredients automatically.</p>
 
   <p>The module path is typically a URL-like string (like <code>github.com/yourname/project</code>). This is not just a name &mdash; it is how other people import your code. If you share your project on GitHub, others can reference it by this exact path.</p>
 
 <pre><code><span class="cmt"># ── Create a new project directory and enter it ──</span>
 <span class="cmt"># mkdir creates the folder; cd moves into it</span>
-mkdir tprm-agent-system &amp;&amp; cd tprm-agent-system
+mkdir my-agent-system &amp;&amp; cd my-agent-system
 
 <span class="cmt"># ── Initialize a new Go module ──</span>
 <span class="cmt"># This creates go.mod, which tracks your project's identity and dependencies</span>
 <span class="cmt"># The path after "init" is your module's unique name</span>
-go mod init github.com/yourname/tprm-agent-system
+go mod init github.com/yourname/my-agent-system
 
 <span class="cmt"># ── What go.mod looks like after initialization ──</span>
-<span class="cmt"># module github.com/yourname/tprm-agent-system</span>
+<span class="cmt"># module github.com/yourname/my-agent-system</span>
 <span class="cmt"># go 1.22</span>
 <span class="cmt"># (dependencies will appear here as you add them)</span></code></pre>
 
@@ -626,13 +621,13 @@ GOOS=linux GOARCH=arm64 go build -o myapp .
     Go embraces being &ldquo;boring.&rdquo; It is not exciting or cutting-edge in its features. It does not have the most elegant syntax or the most powerful type system. But boring is exactly what you want when building systems that must run reliably in production 24/7. Airlines do not fly experimental aircraft on commercial routes. Go is the Boeing 737 of programming languages: well-understood, proven, and reliable.
   </div>
 
-  <h3>What is TPRM?</h3>
+  <h3>What We'll Build</h3>
 
-  <p>Throughout this guide, we will use examples from the <strong>TPRM</strong> domain &mdash; <strong>Third-Party Risk Management</strong>. TPRM is the process that companies use to evaluate and monitor the risks associated with their vendors, suppliers, and partners. Think of it this way: if your company uses a cloud provider to store customer data, you need to verify that the cloud provider has good security practices. If they get hacked, <em>your</em> customers' data is at risk.</p>
+  <p>Throughout this guide, we will build a <strong>multi-agent system</strong> for data analysis and risk assessment. You will create agents that assess vendor risk scores, fetch documents, classify risk levels, and orchestrate multi-step evaluation pipelines. These are concrete, relatable tasks that showcase the power of agentic AI.</p>
 
-  <p>TPRM involves collecting questionnaires from vendors, reviewing their security certifications, checking for data breaches, monitoring their financial health, and assigning risk scores. This is a perfect domain for agentic AI systems because the tasks are well-defined, data-driven, and benefit enormously from automation. An AI agent can read a 200-page security questionnaire in seconds, cross-reference it with breach databases, and produce a risk assessment that would take a human analyst hours.</p>
+  <p>This domain is perfect for agentic AI systems because the tasks are well-defined, data-driven, and benefit enormously from automation. An AI agent can read a 200-page document in seconds, cross-reference it with external databases, and produce an assessment that would take a human analyst hours.</p>
 
-  <p>We chose TPRM examples because they are concrete and relatable: you will build agents that assess vendor risk scores, fetch security documents, classify risk levels, and orchestrate multi-step evaluation pipelines. These patterns apply directly to any domain where AI agents need to gather data, make decisions, and collaborate.</p>
+  <p>The patterns you learn here apply directly to any domain where AI agents need to gather data, make decisions, and collaborate.</p>
 </div>
 
 <!-- ════════════════ CHAPTER 02: CORE SYNTAX ════════════════ -->
@@ -687,7 +682,7 @@ GOOS=linux GOARCH=arm64 go build -o myapp .
 
 <span class="cmt">// ── Package-level variable: must use "var" (cannot use := outside a function) ──</span>
 <span class="cmt">// This variable is accessible by any function in this file.</span>
-<span class="kw">var</span> appName <span class="typ">string</span> = <span class="str">"TPRM Agent System"</span>
+<span class="kw">var</span> appName <span class="typ">string</span> = <span class="str">"Agent System"</span>
 
 <span class="kw">func</span> <span class="fn">main</span>() {
     <span class="cmt">// ── Explicit declaration with type ──</span>
@@ -1783,32 +1778,32 @@ err := db.QueryRow(<span class="str">"SELECT ..."</span>).Scan(&amp;vendor)
 
   <p>This building analogy extends further. When you need supplies from outside &mdash; say, a specialized security scanner or an AI toolkit &mdash; you order them from a supplier (an external module). Go fetches these directly from where the supplier hosts their code (usually GitHub or GitLab), records the exact version in <code>go.mod</code>, and stamps a cryptographic fingerprint in <code>go.sum</code> so nobody can swap the delivery with a tampered package. It's like having a chain-of-custody form for every single dependency.</p>
 
-  <p>Unlike many languages where you can import individual files, Go's unit of code organization is always the <strong>directory</strong>. Every <code>.go</code> file in a directory must declare the same package name. You import entire packages, not individual files or functions. This keeps things simple: when you see <code>import "github.com/yourname/tprm/internal/agent"</code>, you know you're bringing in everything that the <code>agent</code> package exports, from one specific directory.</p>
+  <p>Unlike many languages where you can import individual files, Go's unit of code organization is always the <strong>directory</strong>. Every <code>.go</code> file in a directory must declare the same package name. You import entire packages, not individual files or functions. This keeps things simple: when you see <code>import "github.com/yourname/my-agents/internal/agent"</code>, you know you're bringing in everything that the <code>agent</code> package exports, from one specific directory.</p>
 
   <p>Let's start from the very beginning: creating a module and understanding each piece of the system.</p>
 
   <h3>Creating a Module: The go.mod File</h3>
 
-  <p>Every Go project begins with <code>go mod init</code>. This creates a <code>go.mod</code> file, which is your project's identity card. It declares two things: who you are (the module path) and what Go version you need. The module path is typically a URL-like string that matches where your code is hosted, because this is also how other people import your packages. When someone writes <code>import "github.com/yourname/tprm-agents/internal/scanner"</code>, Go uses that module path to find and download your code.</p>
+  <p>Every Go project begins with <code>go mod init</code>. This creates a <code>go.mod</code> file, which is your project's identity card. It declares two things: who you are (the module path) and what Go version you need. The module path is typically a URL-like string that matches where your code is hosted, because this is also how other people import your packages. When someone writes <code>import "github.com/yourname/my-agents/internal/scanner"</code>, Go uses that module path to find and download your code.</p>
 
-  <p>Here's what the process looks like from scratch. Imagine you're building a TPRM (Third-Party Risk Management) system &mdash; software that helps organizations evaluate the security risks of their vendors and suppliers.</p>
+  <p>Here's what the process looks like from scratch. Imagine you're building a multi-agent system &mdash; software that helps organizations evaluate risks using coordinated AI agents.</p>
 
 <pre><code><span class="cmt">// Step 1: Create a directory for your project</span>
 <span class="cmt">// This is like breaking ground on a new building</span>
-mkdir tprm-agents          <span class="cmt">// create the project folder</span>
-cd tprm-agents             <span class="cmt">// move into it</span>
+mkdir my-agents          <span class="cmt">// create the project folder</span>
+cd my-agents             <span class="cmt">// move into it</span>
 
 <span class="cmt">// Step 2: Initialize the module</span>
 <span class="cmt">// This creates go.mod — your project's identity card</span>
 <span class="cmt">// The module path is how others import your code</span>
-go mod init github.com/yourname/tprm-agents</code></pre>
+go mod init github.com/yourname/my-agents</code></pre>
 
   <p>After running that command, you'll have a <code>go.mod</code> file. Let's look at what a more mature <code>go.mod</code> looks like once you've added some dependencies:</p>
 
 <pre><code><span class="cmt">// go.mod — the blueprint of your project</span>
 <span class="cmt">// This file declares your module identity and all external dependencies</span>
 
-module github.com/yourname/tprm-agents  <span class="cmt">// your module's unique name/path</span>
+module github.com/yourname/my-agents  <span class="cmt">// your module's unique name/path</span>
 
 go <span class="num">1.22</span>  <span class="cmt">// minimum Go version required to build this module</span>
 
@@ -1924,7 +1919,7 @@ go mod why github.com/some/package</code></pre>
 
 <span class="kw">import</span> (
     <span class="str">"fmt"</span>                                          <span class="cmt">// standard library formatting</span>
-    <span class="str">"github.com/yourname/tprm-agents/internal/vendor"</span> <span class="cmt">// import the vendor package</span>
+    <span class="str">"github.com/yourname/my-agents/internal/vendor"</span> <span class="cmt">// import the vendor package</span>
 )
 
 <span class="kw">func</span> <span class="fn">main</span>() {
@@ -1956,7 +1951,7 @@ go mod why github.com/some/package</code></pre>
 <pre><code><span class="cmt">// Project structure showing internal/ usage</span>
 <span class="cmt">// Think of this as the building floor plan</span>
 <span class="cmt">//</span>
-<span class="cmt">// github.com/yourname/tprm-agents/</span>
+<span class="cmt">// github.com/yourname/my-agents/</span>
 <span class="cmt">//   go.mod                          &lt;-- building blueprint</span>
 <span class="cmt">//   main.go                         &lt;-- front door (entry point)</span>
 <span class="cmt">//   internal/                       &lt;-- staff-only area</span>
@@ -2010,8 +2005,7 @@ go mod why github.com/some/package</code></pre>
     <li><strong>One package per directory.</strong> All <code>.go</code> files in a directory must have the same <code>package</code> declaration. There's no nesting &mdash; <code>internal/agent/</code> and <code>internal/agent/tools/</code> are two separate packages.</li>
   </ul>
 
-<pre><code><span class="cmt">// A well-organized import block for a TPRM agent system</span>
-<span class="cmt">// TPRM = Third-Party Risk Management: software that evaluates vendor security</span>
+<pre><code><span class="cmt">// A well-organized import block for a multi-agent system</span>
 <span class="cmt">// Notice how each import path reads like a room in a building</span>
 <span class="kw">import</span> (
     <span class="cmt">// Standard library packages come first (Go convention)</span>
@@ -2020,10 +2014,10 @@ go mod why github.com/some/package</code></pre>
     <span class="str">"log/slog"</span>    <span class="cmt">// for structured logging</span>
 
     <span class="cmt">// Your project's internal packages come second</span>
-    <span class="str">"github.com/yourname/tprm-agents/internal/agent"</span>   <span class="cmt">// core agent types and logic</span>
-    <span class="str">"github.com/yourname/tprm-agents/internal/domain"</span>  <span class="cmt">// Vendor, Assessment, Report types</span>
-    <span class="str">"github.com/yourname/tprm-agents/internal/llm"</span>     <span class="cmt">// LLM client abstraction</span>
-    <span class="str">"github.com/yourname/tprm-agents/internal/memory"</span>  <span class="cmt">// agent memory and state stores</span>
+    <span class="str">"github.com/yourname/my-agents/internal/agent"</span>   <span class="cmt">// core agent types and logic</span>
+    <span class="str">"github.com/yourname/my-agents/internal/domain"</span>  <span class="cmt">// Vendor, Assessment, Report types</span>
+    <span class="str">"github.com/yourname/my-agents/internal/llm"</span>     <span class="cmt">// LLM client abstraction</span>
+    <span class="str">"github.com/yourname/my-agents/internal/memory"</span>  <span class="cmt">// agent memory and state stores</span>
 
     <span class="cmt">// External dependencies come last</span>
     <span class="str">"github.com/sashabaranov/go-openai"</span>  <span class="cmt">// OpenAI API client</span>
@@ -2111,7 +2105,7 @@ go mod why github.com/some/package</code></pre>
 
 <span class="kw">import</span> <span class="str">"fmt"</span>  <span class="cmt">// for printing</span>
 
-<span class="cmt">// Vendor represents a third-party vendor in our TPRM system</span>
+<span class="cmt">// Vendor represents a vendor in our system</span>
 <span class="kw">type</span> <span class="typ">Vendor</span> <span class="kw">struct</span> {
     Name      <span class="typ">string</span>  <span class="cmt">// vendor's company name</span>
     RiskScore <span class="typ">int</span>     <span class="cmt">// their risk rating (0 = safe, 100 = dangerous)</span>
@@ -2306,7 +2300,7 @@ fmt.Println(acme.Active)                         <span class="cmt">// false — 
     <span class="kw">return</span> result  <span class="cmt">// return all items that passed the test</span>
 }
 
-<span class="cmt">// Vendor represents a third-party vendor in our TPRM system</span>
+<span class="cmt">// Vendor represents a vendor in our system</span>
 <span class="kw">type</span> <span class="typ">Vendor</span> <span class="kw">struct</span> {
     Name      <span class="typ">string</span>  <span class="cmt">// vendor's name</span>
     RiskScore <span class="typ">int</span>     <span class="cmt">// risk rating: 0 (safe) to 100 (dangerous)</span>
@@ -2887,7 +2881,7 @@ value, ok := &lt;-ch  <span class="cmt">// receive with closed-check</span>
 
   <h3>Putting It All Together: A Complete Concurrent Example</h3>
 
-  <p>Let's build a practical example that uses everything we've learned: goroutines, channels, buffered channels, closing, and range. We'll create a system that assesses multiple vendors concurrently and collects their results. This is a simplified version of what a real TPRM (Third-Party Risk Management) system might do.</p>
+  <p>Let's build a practical example that uses everything we've learned: goroutines, channels, buffered channels, closing, and range. We'll create a system that assesses multiple vendors concurrently and collects their results. This is a simplified version of what a real multi-agent system might do.</p>
 
 <pre><code><span class="kw">package</span> main  <span class="cmt">// entry point of our program</span>
 
@@ -3513,7 +3507,7 @@ value, ok := &lt;-ch  <span class="cmt">// receive with closed-check</span>
 
   <p>A <strong>pipeline</strong> is a series of stages connected by channels, where each stage processes data and passes it to the next. Think of it as an <strong>assembly line</strong> in a factory: raw materials enter stage 1, get partially processed and sent to stage 2, then stage 3, and so on. The beauty is that all stages run concurrently &mdash; while stage 2 processes item A, stage 1 is already working on item B.</p>
 
-  <p>In a TPRM system, a pipeline might look like: vendor IDs arrive → fetch vendor data → run risk analysis → generate compliance report → store results. All stages run simultaneously, each processing different vendors at the same time.</p>
+  <p>In an agent system, a pipeline might look like: vendor IDs arrive → fetch vendor data → run risk analysis → generate compliance report → store results. All stages run simultaneously, each processing different vendors at the same time.</p>
 
   <p>Each stage follows the same pattern: accept an input channel, return an output channel, launch a goroutine that processes items, and close the output channel when done.</p>
 
@@ -3684,7 +3678,7 @@ value, ok := &lt;-ch  <span class="cmt">// receive with closed-check</span>
     <li><strong>Request-scoped values:</strong> "Here's the request ID for logging" &mdash; like a job number written on everyone's clipboard</li>
   </ul>
 
-  <p>The killer feature is <strong>propagation</strong>. Contexts form a tree: when a parent context is cancelled, <em>all child contexts are automatically cancelled too</em>. Imagine a TPRM assessment that launches 4 agent goroutines, each making 3 LLM API calls. That's 12 in-flight API calls. If the user cancels the request, you need all 12 calls to stop immediately to avoid wasting compute and money. Context propagation handles this automatically &mdash; cancel the parent, and every child operation receives the signal.</p>
+  <p>The killer feature is <strong>propagation</strong>. Contexts form a tree: when a parent context is cancelled, <em>all child contexts are automatically cancelled too</em>. Imagine an assessment that launches 4 agent goroutines, each making 3 LLM API calls. That's 12 in-flight API calls. If the user cancels the request, you need all 12 calls to stop immediately to avoid wasting compute and money. Context propagation handles this automatically &mdash; cancel the parent, and every child operation receives the signal.</p>
 
   <p>This is why <code>context.Context</code> is the <strong>first parameter</strong> of virtually every function in Go that does I/O &mdash; HTTP handlers, database queries, API clients, file operations. It's the universal "cancellation and metadata" carrier.</p>
 
@@ -3859,7 +3853,7 @@ value, ok := &lt;-ch  <span class="cmt">// receive with closed-check</span>
 
   <h3>Context Propagation: The Cancellation Tree</h3>
 
-  <p>The most powerful aspect of context is how cancellation <strong>propagates down the tree</strong>. When you cancel a parent context, all children and grandchildren are cancelled too. This diagram shows how it works in a TPRM agent system:</p>
+  <p>The most powerful aspect of context is how cancellation <strong>propagates down the tree</strong>. When you cancel a parent context, all children and grandchildren are cancelled too. This diagram shows how it works in an agent system:</p>
 
   <div class="diagram">
   Context Tree — Cancellation Propagates Down:
@@ -4137,7 +4131,7 @@ agent = WithRetry(<span class="num">3</span>)(agent)                <span class=
 
   <p>The Strategy pattern is about swapping algorithms at runtime without changing the code that uses them. In Go, this pattern almost disappears because interfaces are <em>implicit</em> &mdash; any type that has the right methods automatically satisfies the interface. There's no explicit "implements" declaration.</p>
 
-  <p>Imagine a TPRM system where you score vendor risk. For premium vendors, you use an expensive AI-powered scorer. For basic vendors, you use a simple rules-based scorer. And you have a hybrid that tries AI first and falls back to rules if the AI fails. All three implement the same interface, so the rest of your code doesn't care which one is used.</p>
+  <p>Imagine a system where you score vendor risk. For premium vendors, you use an expensive AI-powered scorer. For basic vendors, you use a simple rules-based scorer. And you have a hybrid that tries AI first and falls back to rules if the AI fails. All three implement the same interface, so the rest of your code doesn't care which one is used.</p>
 
 <pre><code><span class="cmt">// RiskScorer defines the strategy interface — any risk scoring approach.</span>
 <span class="cmt">// Any struct with a Score method matching this signature automatically satisfies it.</span>
@@ -4197,7 +4191,7 @@ agent = WithRetry(<span class="num">3</span>)(agent)                <span class=
 
   <h3>Your First HTTP Server</h3>
 
-  <p>Let's build a simple HTTP server step by step. We'll create an API for a TPRM agent system that accepts vendor assessment requests and returns risk scores. The server has two endpoints: a health check (to verify the server is running) and an assessment endpoint (to trigger vendor analysis).</p>
+  <p>Let's build a simple HTTP server step by step. We'll create an API for an agent system that accepts vendor assessment requests and returns risk scores. The server has two endpoints: a health check (to verify the server is running) and an assessment endpoint (to trigger vendor analysis).</p>
 
 <pre><code><span class="kw">package</span> main <span class="cmt">// the entry point package for the executable</span>
 
@@ -4285,7 +4279,7 @@ agent = WithRetry(<span class="num">3</span>)(agent)                <span class=
 
     <span class="cmt">// Start the HTTP server.</span>
     <span class="cmt">// This blocks forever, listening for incoming requests on port 8080.</span>
-    slog.Info(<span class="str">"starting TPRM agent server"</span>, <span class="str">"port"</span>, <span class="num">8080</span>)  <span class="cmt">// log that we're starting</span>
+    slog.Info(<span class="str">"starting agent server"</span>, <span class="str">"port"</span>, <span class="num">8080</span>)  <span class="cmt">// log that we're starting</span>
     err := http.ListenAndServe(<span class="str">":8080"</span>, mux)                 <span class="cmt">// start listening on port 8080</span>
     slog.Error(<span class="str">"server stopped"</span>, <span class="str">"error"</span>, err)                <span class="cmt">// if we get here, the server crashed</span>
 }</code></pre>
@@ -4660,9 +4654,9 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
   <p>The three most important directories are <code>cmd/</code>, <code>internal/</code>, and <code>pkg/</code>. Think of them as: the <strong>front doors</strong> (cmd/ &mdash; where people enter your building), the <strong>private offices</strong> (internal/ &mdash; only employees allowed), and the <strong>public showroom</strong> (pkg/ &mdash; things you show to the outside world). The <code>internal/</code> directory is special: the Go compiler <em>enforces</em> that code inside it can only be imported by code in the same module. It's like a locked room where only your team has the key &mdash; no one outside your project can access it, even if they try.</p>
 
-  <p>Let's walk through a complete TPRM agent system layout, explaining what each directory and file is responsible for.</p>
+  <p>Let's walk through a complete agent system layout, explaining what each directory and file is responsible for.</p>
 
-<pre><code><span class="cmt">tprm-agents/                          # The root of the project (the "building")</span>
+<pre><code><span class="cmt">my-agents/                          # The root of the project (the "building")</span>
 ├── cmd/                              <span class="cmt"># Front doors — entry points to the application</span>
 │   └── server/                       <span class="cmt"># One entry point: the HTTP server</span>
 │       └── main.go                   <span class="cmt"># THE starting point — program begins here</span>
@@ -4711,7 +4705,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
   <div class="callout tip">
     <div class="callout-title">internal/ is enforced by the compiler</div>
-    This is one of Go's most powerful features. Code inside <code>internal/</code> literally cannot be imported by other projects &mdash; the compiler refuses to compile it. If you publish your TPRM agent as a Go module, consumers can import from <code>pkg/</code> but never from <code>internal/</code>. This gives you absolute freedom to refactor your internal code without breaking anyone else. It's like a locked room that only your team has keys to.
+    This is one of Go's most powerful features. Code inside <code>internal/</code> literally cannot be imported by other projects &mdash; the compiler refuses to compile it. If you publish your agent system as a Go module, consumers can import from <code>pkg/</code> but never from <code>internal/</code>. This gives you absolute freedom to refactor your internal code without breaking anyone else. It's like a locked room that only your team has keys to.
   </div>
 
   <h3>What Goes Where: A Quick Guide</h3>
@@ -4775,7 +4769,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
     handler := setupHTTPHandler(orchestrator)       <span class="cmt">// create HTTP routes + middleware stack</span>
 
     <span class="cmt">// Step 6: Start the server.</span>
-    slog.Info(<span class="str">"starting TPRM agent system"</span>,         <span class="cmt">// log the startup with all key settings</span>
+    slog.Info(<span class="str">"starting agent system"</span>,         <span class="cmt">// log the startup with all key settings</span>
         <span class="str">"port"</span>, cfg.Port,                          <span class="cmt">// which port we're listening on</span>
         <span class="str">"model"</span>, cfg.LLMModel,                     <span class="cmt">// which LLM model we're using</span>
         <span class="str">"workers"</span>, cfg.MaxWorkers,                 <span class="cmt">// how many worker goroutines</span>
@@ -4804,7 +4798,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
   <p>That's an agentic system. Replace the human analysts with LLM-powered agents, the tools with software APIs, and the shared workspace with channels and shared state &mdash; and you have a modern AI agent system. Each agent is a program that can <strong>reason</strong> (via an LLM), <strong>act</strong> (via tools), and <strong>communicate</strong> (via messages). The key insight is that a single LLM call is like asking one question to one person. An agentic system orchestrates <em>many</em> such calls across <em>multiple</em> specialized agents to accomplish tasks that no single LLM call could handle alone.</p>
 
-  <p>In a Third-Party Risk Management (TPRM) context, this means agents that can automatically read vendor questionnaires, analyze SOC 2 reports, cross-reference compliance databases, score risks based on multiple criteria, and generate comprehensive reports for stakeholders &mdash; all with minimal human intervention. A task that might take a human analyst days can be completed in minutes.</p>
+  <p>In practice, this means agents that can automatically read documents, analyze reports, cross-reference databases, score risks based on multiple criteria, and generate comprehensive reports for stakeholders &mdash; all with minimal human intervention. A task that might take a human analyst days can be completed in minutes.</p>
 
   <h3>Why Go Is Perfect for Agent Systems</h3>
 
@@ -5336,7 +5330,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
   <p>Think of it like this: you're sitting in a room with a brilliant consultant (the LLM). The consultant can analyze any information you give them and provide expert advice. But they can't leave the room. If they need data that isn't in the room, they write a note saying "please look up X" and hand it to you. You go fetch the data, bring it back, and they continue their analysis. That's exactly how tool calling works: the LLM identifies what information it needs, generates a tool call (the note), the tool executes and returns the result, and the LLM continues reasoning.</p>
 
-  <p>In a TPRM (Third-Party Risk Management) system, tools give agents the ability to interact with real-world systems: querying vendor databases, parsing SOC 2 PDF reports, checking compliance frameworks, searching the web for recent security incidents, and calculating risk scores. Without tools, an agent can only work with the information in its training data and the current conversation. With tools, it can access live, real-time information.</p>
+  <p>In an agent system, tools give agents the ability to interact with real-world systems: querying databases, parsing PDF reports, checking compliance frameworks, searching the web for recent incidents, and calculating risk scores. Without tools, an agent can only work with the information in its training data and the current conversation. With tools, it can access live, real-time information.</p>
 
   <h3>The Tool Interface</h3>
 
@@ -5406,9 +5400,9 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
     <span class="kw">return</span> defs                                    <span class="cmt">// return all definitions</span>
 }</code></pre>
 
-  <h3>Concrete TPRM Tool Examples</h3>
+  <h3>Concrete Tool Examples</h3>
 
-  <p>TPRM stands for <strong>Third-Party Risk Management</strong> &mdash; the process of evaluating and managing the risks that come from working with external vendors, suppliers, and partners. When your company shares data with a cloud provider, uses a payroll service, or relies on a SaaS tool, each of those third parties introduces potential risk (data breaches, outages, compliance failures). TPRM agents need tools to access the data required for these risk assessments.</p>
+  <p>Agents need tools to access the data required for their assessments. Let's look at practical examples of tools that interact with external systems.</p>
 
   <p>Let's build two concrete tools: one that looks up vendor information in a database, and another that searches the web for recent security incidents.</p>
 
@@ -5728,7 +5722,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
   <p>In supervisor orchestration, one "boss" agent (the supervisor) decides which worker agent should handle each task. The supervisor receives a request, analyzes it, and delegates to the appropriate specialist. After the specialist finishes, the supervisor reviews the result and decides what to do next: assign another task, request more work, or return the final result.</p>
 
-  <p><strong>When to use it:</strong> When the workflow isn't fixed &mdash; the choice of which agent to run depends on the input. A TPRM triage system might need to route some requests to a quick assessment and others to a full deep-dive, based on the vendor tier. The supervisor agent makes this decision dynamically.</p>
+  <p><strong>When to use it:</strong> When the workflow isn't fixed &mdash; the choice of which agent to run depends on the input. A triage system might need to route some requests to a quick assessment and others to a full deep-dive, based on the vendor tier. The supervisor agent makes this decision dynamically.</p>
 
   <p><strong>Real-world analogy:</strong> A hospital emergency room triage nurse who examines each patient and decides which specialist they need to see.</p>
 
@@ -5924,15 +5918,15 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
     </div>
   </div>
 
-  <h3>Combining Patterns: The TPRM Orchestrator</h3>
+  <h3>Combining Patterns: Full Assessment Orchestrator</h3>
 
-  <p>In practice, you often combine multiple patterns. A TPRM assessment might use <strong>sequential orchestration</strong> at the top level (intake → analysis → report), with <strong>parallel orchestration</strong> inside the analysis phase (risk + docs + compliance run simultaneously). This gives you the best of both worlds: clear overall flow with maximum concurrency where it matters.</p>
+  <p>In practice, you often combine multiple patterns. An assessment might use <strong>sequential orchestration</strong> at the top level (intake → analysis → report), with <strong>parallel orchestration</strong> inside the analysis phase (risk + docs + compliance run simultaneously). This gives you the best of both worlds: clear overall flow with maximum concurrency where it matters.</p>
 
-<pre><code><span class="cmt">// TPRMOrchestrator combines sequential and parallel patterns for a full assessment.</span>
+<pre><code><span class="cmt">// AssessmentOrchestrator combines sequential and parallel patterns for a full assessment.</span>
 <span class="cmt">// Phase 1 (sequential): Intake agent gathers initial information.</span>
 <span class="cmt">// Phase 2 (parallel): Risk, document, and compliance agents run simultaneously.</span>
 <span class="cmt">// Phase 3 (sequential): Report agent compiles everything into a final report.</span>
-<span class="kw">type</span> <span class="typ">TPRMOrchestrator</span> <span class="kw">struct</span> {
+<span class="kw">type</span> <span class="typ">AssessmentOrchestrator</span> <span class="kw">struct</span> {
     intake     <span class="typ">Agent</span> <span class="cmt">// Phase 1: gathers vendor information</span>
     riskAgent  <span class="typ">Agent</span> <span class="cmt">// Phase 2a: analyzes risk factors</span>
     docAgent   <span class="typ">Agent</span> <span class="cmt">// Phase 2b: analyzes vendor documents</span>
@@ -5941,7 +5935,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 }
 
 <span class="cmt">// RunAssessment orchestrates a full vendor risk assessment.</span>
-<span class="kw">func</span> (o *<span class="typ">TPRMOrchestrator</span>) <span class="fn">RunAssessment</span>(ctx context.Context, vendorID <span class="typ">string</span>) (*<span class="typ">Report</span>, <span class="typ">error</span>) {
+<span class="kw">func</span> (o *<span class="typ">AssessmentOrchestrator</span>) <span class="fn">RunAssessment</span>(ctx context.Context, vendorID <span class="typ">string</span>) (*<span class="typ">Report</span>, <span class="typ">error</span>) {
     <span class="cmt">// Phase 1: Intake (sequential — must complete before analysis begins).</span>
     slog.Info(<span class="str">"starting intake"</span>, <span class="str">"vendor"</span>, vendorID) <span class="cmt">// log the start of phase 1</span>
     intakeResult, err := o.intake.Run(ctx, []<span class="typ">Message</span>{ <span class="cmt">// run the intake agent</span>
@@ -5990,8 +5984,8 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 }
 
 <span class="cmt">// Name identifies this orchestrator.</span>
-<span class="kw">func</span> (o *<span class="typ">TPRMOrchestrator</span>) <span class="fn">Name</span>() <span class="typ">string</span> {
-    <span class="kw">return</span> <span class="str">"tprm-orchestrator"</span>
+<span class="kw">func</span> (o *<span class="typ">AssessmentOrchestrator</span>) <span class="fn">Name</span>() <span class="typ">string</span> {
+    <span class="kw">return</span> <span class="str">"assessment-orchestrator"</span>
 }</code></pre>
 
   <div class="callout tip">
@@ -6628,7 +6622,7 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
 
 <span class="cmt">// Create a tracer for our application. The string identifies our service</span>
 <span class="cmt">// in the tracing backend so you can filter traces by service name.</span>
-<span class="kw">var</span> tracer = otel.Tracer(<span class="str">"tprm-agents"</span>)
+<span class="kw">var</span> tracer = otel.Tracer(<span class="str">"my-agents"</span>)
 
 <span class="cmt">// Run wraps the agent's execution in a tracing span.</span>
 <span class="cmt">// The span records the agent's name, model, input size, output size,</span>
@@ -6665,660 +6659,9 @@ go test -short ./...                    <span class="cmt"># only run fast unit t
   </div>
 </div>
 
-<!-- ════════════════ TPRM ════════════════ -->
-<div class="section" id="tprm">
-  <div class="section-number">Chapter 23</div>
-  <h2>TPRM Domain Overview</h2>
-
-  <h3>What Is TPRM?</h3>
-  <p>Imagine you own a restaurant. You do not grow your own vegetables, brew your own soda, or manufacture your own kitchen equipment. You rely on <strong>third parties</strong>: a produce supplier, a beverage distributor, an equipment vendor, a payment processor, a delivery app. Each of these relationships creates risk. If your produce supplier has a food safety violation, <em>your</em> restaurant gets shut down. If your payment processor gets hacked, <em>your</em> customers' credit cards are stolen. If your delivery app goes bankrupt, <em>your</em> revenue drops overnight.</p>
-
-  <p><strong>Third-Party Risk Management (TPRM)</strong> is the systematic process of identifying, assessing, and mitigating these risks. In the technology world, "third parties" are the cloud providers, SaaS platforms, IT outsourcing firms, data analytics vendors, and payment processors that modern companies depend on &mdash; often dozens to thousands of them. Each relationship introduces risk that must be evaluated and monitored.</p>
-
-  <h3>Types of Third-Party Risk</h3>
-  <p>Risk comes in many flavors, and a thorough TPRM program evaluates all of them. Here are the major categories:</p>
-
-  <table class="comparison">
-    <thead>
-      <tr><th>Risk Category</th><th>What It Means</th><th>Real-World Example</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Security</strong></td>
-        <td>Can an attacker breach the vendor and reach your data?</td>
-        <td>Vendor stores your customer data with weak encryption; a hacker steals it</td>
-      </tr>
-      <tr>
-        <td><strong>Compliance</strong></td>
-        <td>Does the vendor meet regulatory requirements?</td>
-        <td>Vendor handles health data but is not HIPAA compliant; you get fined</td>
-      </tr>
-      <tr>
-        <td><strong>Financial</strong></td>
-        <td>Could the vendor go bankrupt or become unable to deliver?</td>
-        <td>A critical SaaS vendor runs out of funding and shuts down overnight</td>
-      </tr>
-      <tr>
-        <td><strong>Operational</strong></td>
-        <td>Can the vendor reliably deliver their service?</td>
-        <td>Cloud provider has a 12-hour outage; your entire platform goes offline</td>
-      </tr>
-      <tr>
-        <td><strong>Reputational</strong></td>
-        <td>Could the vendor's actions damage your brand?</td>
-        <td>A vendor is caught in a data privacy scandal; your customers lose trust</td>
-      </tr>
-      <tr>
-        <td><strong>Strategic</strong></td>
-        <td>Could vendor decisions misalign with your business direction?</td>
-        <td>Vendor discontinues the product you depend on; you scramble for alternatives</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Why Automation Matters</h3>
-  <p>Traditional TPRM is manual, slow, and expensive. Here is what a typical manual assessment looks like:</p>
-  <ol>
-    <li>Send a 200-question security questionnaire to the vendor (wait 2-4 weeks for a response)</li>
-    <li>Request their SOC 2 Type II report, ISO 27001 certificate, and privacy policy (wait 1-2 weeks)</li>
-    <li>An analyst reads hundreds of pages of documentation (2-3 days of work)</li>
-    <li>The analyst scores risks across multiple dimensions (half a day)</li>
-    <li>Map findings to compliance frameworks (GDPR, HIPAA, SOC 2) (1 day)</li>
-    <li>Write a risk report for leadership (1 day)</li>
-    <li>Follow up on remediation items (ongoing)</li>
-  </ol>
-
-  <p>Total: <strong>3-6 weeks per vendor</strong>. If your company has 200 vendors, that is 600-1200 weeks of analyst time per year. With LLM-powered agents, we can automate steps 3-6 &mdash; reducing a 3-day analyst task to 30 minutes of automated processing while maintaining consistency and thoroughness.</p>
-
-  <h3>TPRM Lifecycle and Agent Mapping</h3>
-  <p>Each stage of the TPRM process maps naturally to a specialized agent. Here is how agents automate the lifecycle:</p>
-
-  <table class="comparison">
-    <thead>
-      <tr><th>TPRM Process</th><th>Agent Role</th><th>Key Actions</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Vendor Intake</td>
-        <td class="go">Intake Agent</td>
-        <td>Parse questionnaires, extract metadata, classify vendor tier</td>
-      </tr>
-      <tr>
-        <td>Risk Assessment</td>
-        <td class="go">Risk Assessor Agent</td>
-        <td>Score risks across dimensions (security, privacy, financial, operational)</td>
-      </tr>
-      <tr>
-        <td>Document Analysis</td>
-        <td class="go">Doc Analyzer Agent</td>
-        <td>Review SOC 2 reports, contracts, certifications, SLAs</td>
-      </tr>
-      <tr>
-        <td>Compliance Check</td>
-        <td class="go">Compliance Agent</td>
-        <td>Map controls to frameworks (SOC 2, ISO 27001, GDPR, HIPAA)</td>
-      </tr>
-      <tr>
-        <td>Continuous Monitoring</td>
-        <td class="go">Monitor Agent</td>
-        <td>Watch for breaches, news, rating changes, cert expirations</td>
-      </tr>
-      <tr>
-        <td>Report Generation</td>
-        <td class="go">Report Agent</td>
-        <td>Synthesize findings into executive summaries and detailed reports</td>
-      </tr>
-      <tr>
-        <td>Remediation Tracking</td>
-        <td class="go">Remediation Agent</td>
-        <td>Track issues, send reminders, verify fixes</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Domain Types in Go</h3>
-  <p>Before building agents, we need to model the TPRM domain in Go. These structs represent the core concepts: vendors, assessments, risks, and findings. Every field is explained &mdash; understanding the data model is essential for understanding what the agents work with.</p>
-
-<pre><code><span class="kw">package</span> tprm                            <span class="cmt">// all TPRM domain types live in this package</span>
-
-<span class="kw">import</span> <span class="str">"time"</span>                            <span class="cmt">// for timestamps and durations</span>
-
-<span class="cmt">// Vendor represents a third-party company that your organization works with.</span>
-<span class="cmt">// This is the central entity in TPRM — everything revolves around vendors.</span>
-<span class="kw">type</span> <span class="typ">Vendor</span> <span class="kw">struct</span> {
-    ID          <span class="typ">string</span>                  <span class="cmt">// unique identifier (e.g., "v-001")</span>
-    Name        <span class="typ">string</span>                  <span class="cmt">// company name (e.g., "Acme Cloud Services")</span>
-    Tier        <span class="typ">string</span>                  <span class="cmt">// risk tier: "critical", "high", "medium", "low"</span>
-    Category    <span class="typ">string</span>                  <span class="cmt">// service type: "cloud", "SaaS", "consulting", etc.</span>
-    DataAccess  <span class="typ">string</span>                  <span class="cmt">// what data they access: "PII", "financial", "none"</span>
-    ContractEnd time.Time               <span class="cmt">// when the contract expires — triggers reassessment</span>
-    Active      <span class="typ">bool</span>                    <span class="cmt">// is this vendor currently engaged?</span>
-}
-
-<span class="cmt">// Assessment represents one evaluation of a vendor's risk profile.</span>
-<span class="cmt">// A vendor may have many assessments over time (annual reviews, etc.).</span>
-<span class="kw">type</span> <span class="typ">Assessment</span> <span class="kw">struct</span> {
-    ID          <span class="typ">string</span>                  <span class="cmt">// unique assessment identifier</span>
-    VendorID    <span class="typ">string</span>                  <span class="cmt">// which vendor this assessment is for</span>
-    Status      <span class="typ">string</span>                  <span class="cmt">// "pending", "in_progress", "completed", "failed"</span>
-    OverallRisk <span class="typ">string</span>                  <span class="cmt">// final verdict: "critical", "high", "medium", "low"</span>
-    Scores      <span class="kw">map</span>[<span class="typ">string</span>]<span class="typ">int</span>          <span class="cmt">// risk scores by dimension: {"security": 72, ...}</span>
-    Findings    []Finding               <span class="cmt">// list of specific risk findings</span>
-    CreatedAt   time.Time               <span class="cmt">// when this assessment was created</span>
-    CompletedAt *time.Time              <span class="cmt">// when it finished (nil if still in progress)</span>
-}
-
-<span class="cmt">// Finding represents a specific risk issue discovered during assessment.</span>
-<span class="cmt">// Each finding has a severity, description, and recommended remediation.</span>
-<span class="kw">type</span> <span class="typ">Finding</span> <span class="kw">struct</span> {
-    ID          <span class="typ">string</span>                  <span class="cmt">// unique finding identifier</span>
-    Category    <span class="typ">string</span>                  <span class="cmt">// risk category: "security", "compliance", etc.</span>
-    Severity    <span class="typ">string</span>                  <span class="cmt">// how serious: "critical", "high", "medium", "low"</span>
-    Title       <span class="typ">string</span>                  <span class="cmt">// short description (e.g., "Weak encryption at rest")</span>
-    Description <span class="typ">string</span>                  <span class="cmt">// detailed explanation of the finding</span>
-    Evidence    <span class="typ">string</span>                  <span class="cmt">// what evidence supports this finding</span>
-    Remediation <span class="typ">string</span>                  <span class="cmt">// recommended fix (e.g., "Upgrade to AES-256")</span>
-    Framework   <span class="typ">string</span>                  <span class="cmt">// which framework this maps to (e.g., "SOC2 CC6.1")</span>
-}
-
-<span class="cmt">// AssessmentRequest is what the API receives to start a new assessment.</span>
-<span class="kw">type</span> <span class="typ">AssessmentRequest</span> <span class="kw">struct</span> {
-    VendorID   <span class="typ">string</span>                  <span class="cmt">// which vendor to assess</span>
-    Frameworks []<span class="typ">string</span>                <span class="cmt">// which frameworks to check: ["SOC2", "GDPR", "HIPAA"]</span>
-    Documents  []<span class="typ">string</span>                <span class="cmt">// paths to vendor documents (SOC2 reports, etc.)</span>
-    Priority   <span class="typ">string</span>                  <span class="cmt">// assessment priority: "urgent", "normal", "low"</span>
-}
-
-<span class="cmt">// Report is the final output of a complete TPRM assessment.</span>
-<span class="kw">type</span> <span class="typ">Report</span> <span class="kw">struct</span> {
-    Assessment      Assessment           <span class="cmt">// the complete assessment data</span>
-    ExecutiveSummary <span class="typ">string</span>              <span class="cmt">// 2-3 paragraph summary for leadership</span>
-    DetailedFindings []Finding           <span class="cmt">// all findings with evidence and remediation</span>
-    ComplianceGaps  []ComplianceGap      <span class="cmt">// gaps in framework compliance</span>
-    Recommendations []<span class="typ">string</span>            <span class="cmt">// prioritized list of recommended actions</span>
-    GeneratedAt     time.Time            <span class="cmt">// when this report was generated</span>
-}
-
-<span class="cmt">// ComplianceGap represents a specific gap in framework compliance.</span>
-<span class="kw">type</span> <span class="typ">ComplianceGap</span> <span class="kw">struct</span> {
-    Framework   <span class="typ">string</span>                  <span class="cmt">// which framework (e.g., "SOC2", "ISO27001")</span>
-    Control     <span class="typ">string</span>                  <span class="cmt">// which specific control (e.g., "CC6.1")</span>
-    Status      <span class="typ">string</span>                  <span class="cmt">// "met", "partially_met", "not_met"</span>
-    Description <span class="typ">string</span>                  <span class="cmt">// what the gap is</span>
-    Severity    <span class="typ">string</span>                  <span class="cmt">// how serious the gap is</span>
-}</code></pre>
-
-  <div class="callout tip">
-    <div class="callout-title">Design domain types first</div>
-    Before writing any agent code, define your domain types. These structs are the "language" your system speaks. Agents produce and consume these types. Getting the data model right early prevents painful refactoring later. Notice how every field uses a clear, descriptive name and a simple type &mdash; this makes the code self-documenting.
-  </div>
-</div>
-
-<!-- ════════════════ TPRM AGENTS ════════════════ -->
-<div class="section" id="tprm-agents">
-  <div class="section-number">Chapter 24</div>
-  <h2>TPRM Agent Design</h2>
-
-  <h3>How Agents Map to TPRM Tasks</h3>
-  <p>Each TPRM agent is a specialist with a narrow focus, specific tools, and a carefully crafted system prompt. Think of it like a hospital: you do not have one doctor who does everything. You have a cardiologist, a radiologist, a surgeon, and a pharmacist. Each has specialized training, specialized equipment, and a specific role. They collaborate through shared patient records (our shared state) and referrals (our orchestrator).</p>
-
-  <p>The key design decisions for each agent are:</p>
-  <ul>
-    <li><strong>System prompt</strong> &mdash; The "training" that tells the LLM who it is, what it knows, and how to behave. This is the most important part &mdash; a well-crafted prompt is the difference between a useful agent and a confused one.</li>
-    <li><strong>Tools</strong> &mdash; Which tools the agent can use. Fewer tools = better decisions. A risk agent does not need a PDF parser; a doc analyzer does not need a breach database checker.</li>
-    <li><strong>Temperature</strong> &mdash; Controls randomness. Low (0.1-0.3) for analytical tasks (risk scoring, document analysis). Slightly higher (0.3-0.5) for creative tasks (report writing).</li>
-    <li><strong>Model</strong> &mdash; Which LLM to use. Powerful models (GPT-4) for complex reasoning; cheaper models (GPT-4o-mini) for simpler tasks.</li>
-  </ul>
-
-  <h3>Risk Assessment Agent</h3>
-  <p>The Risk Assessor is the analytical heart of the TPRM system. It evaluates a vendor across five risk dimensions: security, data privacy, operational resilience, financial stability, and compliance. It uses tools to look up vendor data, check breach databases, and retrieve industry benchmarks. Think of it as the lead analyst who reads all the data and produces a risk scorecard.</p>
-
-<pre><code><span class="cmt">// NewRiskAssessmentAgent creates an agent specialized in evaluating vendor risk.</span>
-<span class="cmt">// It uses low temperature (0.2) for consistent, deterministic risk scores.</span>
-<span class="kw">func</span> <span class="fn">NewRiskAssessmentAgent</span>(llm LLMClient, registry *ToolRegistry) *LLMAgent {
-    <span class="kw">return</span> &amp;LLMAgent{
-        name:        <span class="str">"risk-assessor"</span>,      <span class="cmt">// unique name for logging and tracing</span>
-        model:       <span class="str">"gpt-4-turbo"</span>,       <span class="cmt">// powerful model for complex risk reasoning</span>
-        temperature: <span class="num">0.2</span>,                 <span class="cmt">// low randomness for consistent scoring</span>
-
-        <span class="cmt">// The system prompt defines the agent's expertise, process, and output format.</span>
-        <span class="cmt">// This is the "training manual" — the LLM reads this before every interaction.</span>
-        systemPrompt: <span class="str">`You are a third-party risk assessment specialist.
-Evaluate vendor risk across these dimensions:
-- Security posture (access controls, encryption, vulnerability management)
-- Data privacy (data handling, retention, cross-border transfers)
-- Operational resilience (uptime SLAs, disaster recovery, incident response)
-- Financial stability (company health, insurance coverage)
-- Compliance (regulatory adherence, certifications)
-
-For each dimension, provide:
-1. A score from 0-100
-2. Key findings with evidence
-3. Recommended mitigations
-
-Use the available tools to look up vendor data, past assessments,
-and industry benchmarks before making your assessment.`</span>,
-
-        <span class="cmt">// The risk agent has four tools — each provides specific data</span>
-        tools: []Tool{
-            registry.MustGet(<span class="str">"lookup_vendor"</span>),          <span class="cmt">// fetches vendor profile from database</span>
-            registry.MustGet(<span class="str">"search_assessments"</span>),     <span class="cmt">// finds past assessments for context</span>
-            registry.MustGet(<span class="str">"check_breach_database"</span>),  <span class="cmt">// checks if vendor appears in breach records</span>
-            registry.MustGet(<span class="str">"get_industry_benchmarks"</span>), <span class="cmt">// retrieves benchmark scores by industry</span>
-        },
-        llmClient: llm,                  <span class="cmt">// the LLM client for making API calls</span>
-    }
-}</code></pre>
-
-  <h3>Document Analyzer Agent</h3>
-  <p>The Document Analyzer reads and extracts information from vendor-submitted documents: SOC 2 Type II reports, ISO 27001 certificates, privacy policies, contracts, and SLAs. Think of it as a paralegal who reads hundreds of pages of legal and technical documents and produces a structured summary of key findings, gaps, and expiration dates.</p>
-
-<pre><code><span class="cmt">// NewDocAnalyzerAgent creates an agent specialized in document analysis.</span>
-<span class="cmt">// Uses very low temperature (0.1) because document extraction must be precise.</span>
-<span class="kw">func</span> <span class="fn">NewDocAnalyzerAgent</span>(llm LLMClient, registry *ToolRegistry) *LLMAgent {
-    <span class="kw">return</span> &amp;LLMAgent{
-        name:        <span class="str">"doc-analyzer"</span>,       <span class="cmt">// agent identifier for logging</span>
-        model:       <span class="str">"gpt-4-turbo"</span>,       <span class="cmt">// needs strong reasoning for document analysis</span>
-        temperature: <span class="num">0.1</span>,                 <span class="cmt">// very low — extraction must be accurate, not creative</span>
-
-        <span class="cmt">// System prompt tells the agent what types of documents to expect</span>
-        <span class="cmt">// and what information to extract from each</span>
-        systemPrompt: <span class="str">`You are a document analysis specialist for TPRM.
-Analyze vendor-submitted documents including SOC 2 Type II reports,
-ISO 27001 certificates, privacy policies, business continuity plans,
-contracts, SLAs, and security questionnaire responses.
-
-Extract key findings, gaps, red flags, and expiration dates.
-Map findings to relevant control frameworks.
-Flag any inconsistencies between documents.`</span>,
-
-        <span class="cmt">// Document-specific tools — no database access, just document processing</span>
-        tools: []Tool{
-            registry.MustGet(<span class="str">"parse_document"</span>),     <span class="cmt">// converts PDF/XLSX to text</span>
-            registry.MustGet(<span class="str">"extract_controls"</span>),   <span class="cmt">// finds control statements in text</span>
-            registry.MustGet(<span class="str">"check_cert_validity"</span>), <span class="cmt">// verifies certification dates</span>
-        },
-        llmClient: llm,                  <span class="cmt">// LLM client for API calls</span>
-    }
-}</code></pre>
-
-  <h3>Compliance Mapper Agent</h3>
-  <p>The Compliance Mapper takes findings from the other agents and maps them to compliance frameworks like SOC 2, ISO 27001, GDPR, and HIPAA. Think of it as a compliance officer who takes the technical findings ("encryption is weak") and maps them to specific regulatory requirements ("this violates SOC 2 CC6.1 and GDPR Article 32"). It identifies which controls are satisfied, which have gaps, and recommends remediation for each gap.</p>
-
-<pre><code><span class="cmt">// NewComplianceAgent creates an agent specialized in framework compliance mapping.</span>
-<span class="cmt">// Uses very low temperature because compliance mapping must be precise.</span>
-<span class="kw">func</span> <span class="fn">NewComplianceAgent</span>(llm LLMClient, registry *ToolRegistry) *LLMAgent {
-    <span class="kw">return</span> &amp;LLMAgent{
-        name:        <span class="str">"compliance-checker"</span>,  <span class="cmt">// agent identifier</span>
-        model:       <span class="str">"gpt-4-turbo"</span>,        <span class="cmt">// needs deep knowledge of compliance frameworks</span>
-        temperature: <span class="num">0.1</span>,                  <span class="cmt">// precision is critical — no creative liberties</span>
-
-        <span class="cmt">// Detailed prompt listing every framework the agent covers</span>
-        <span class="cmt">// and the exact output format expected</span>
-        systemPrompt: <span class="str">`You are a compliance mapping specialist for TPRM.
-Given vendor information and assessment findings, map them to relevant
-compliance frameworks and identify gaps.
-
-Frameworks you cover:
-- SOC 2 Type II (Trust Service Criteria)
-- ISO 27001 (Annex A controls)
-- GDPR (Articles 25, 28, 32, 33)
-- HIPAA (Security Rule, Privacy Rule)
-- NIST CSF (Identify, Protect, Detect, Respond, Recover)
-
-For each applicable framework:
-1. List controls that are satisfied (with evidence references)
-2. List controls with gaps (with severity: critical/high/medium/low)
-3. Recommend remediation actions for each gap
-4. Note any conflicting requirements between frameworks`</span>,
-
-        <span class="cmt">// Compliance-specific tools for framework lookups and mapping</span>
-        tools: []Tool{
-            registry.MustGet(<span class="str">"lookup_framework_controls"</span>),    <span class="cmt">// fetches control definitions</span>
-            registry.MustGet(<span class="str">"map_finding_to_control"</span>),       <span class="cmt">// maps a finding to controls</span>
-            registry.MustGet(<span class="str">"check_regulatory_requirements"</span>), <span class="cmt">// checks applicable regulations</span>
-        },
-        llmClient: llm,                  <span class="cmt">// LLM client for API calls</span>
-    }
-}</code></pre>
-
-  <h3>Report Generator Agent</h3>
-  <p>The Report Generator is the writer of the team. It takes the combined outputs from all other agents &mdash; risk scores, document findings, compliance gaps &mdash; and synthesizes them into a comprehensive, professionally written report. Think of it as the executive assistant who takes meeting notes from five different people and produces a clear, coherent summary for the CEO.</p>
-
-  <p>Notice that the report agent has <strong>no tools</strong>. It does not need to look up data or call APIs &mdash; all the data comes from the other agents. Its job is purely synthesis and writing.</p>
-
-<pre><code><span class="cmt">// NewReportAgent creates an agent specialized in report writing.</span>
-<span class="cmt">// Uses slightly higher temperature (0.4) for more natural, readable prose.</span>
-<span class="kw">func</span> <span class="fn">NewReportAgent</span>(llm LLMClient) *LLMAgent {
-    <span class="kw">return</span> &amp;LLMAgent{
-        name:        <span class="str">"report-generator"</span>,  <span class="cmt">// agent identifier for tracing</span>
-        model:       <span class="str">"gpt-4-turbo"</span>,       <span class="cmt">// needs strong writing ability</span>
-        temperature: <span class="num">0.4</span>,                 <span class="cmt">// slightly higher for natural, flowing prose</span>
-
-        <span class="cmt">// Detailed prompt specifying the exact report structure</span>
-        systemPrompt: <span class="str">`You are a TPRM report writer. Given the combined outputs from
-risk assessment, document analysis, and compliance mapping agents,
-synthesize a comprehensive vendor risk report.
-
-The report must include:
-1. Executive Summary (2-3 paragraphs for leadership)
-2. Overall Risk Rating (Critical/High/Medium/Low) with justification
-3. Detailed Findings by risk dimension
-4. Compliance Gap Analysis
-5. Recommended Actions (prioritized by risk severity)
-6. Timeline for follow-up review
-
-Write in a professional, objective tone suitable for a board audience.
-Cite specific evidence from the input data.`</span>,
-
-        tools:     <span class="kw">nil</span>,                  <span class="cmt">// no tools — this agent only synthesizes text</span>
-        llmClient: llm,                  <span class="cmt">// LLM client for API calls</span>
-    }
-}</code></pre>
-
-  <div class="callout tip">
-    <div class="callout-title">Principle of Least Privilege for Agent Tools</div>
-    Each agent should only have access to the tools it needs. The risk agent does not need a PDF parser. The report agent does not need database access. This reduces confusion for the LLM (fewer choices = better decisions) and limits the blast radius if an agent misbehaves. If a compromised agent can only read vendor data but cannot modify it, the damage is contained.
-  </div>
-</div>
-
-<!-- ════════════════ TPRM ARCHITECTURE ════════════════ -->
-<div class="section" id="tprm-architecture">
-  <div class="section-number">Chapter 25</div>
-  <h2>Full TPRM Architecture</h2>
-
-  <h3>Putting It All Together</h3>
-  <p>We have built all the individual pieces: agents, tools, memory, guardrails, and observability. Now we wire them into a complete, working system. The architecture follows a three-phase pipeline:</p>
-
-  <ol>
-    <li><strong>Phase 1: Intake</strong> (sequential) &mdash; The intake agent processes the vendor data and classifies the vendor. This must complete before analysis begins because the analysis agents need the intake data.</li>
-    <li><strong>Phase 2: Parallel Analysis</strong> (concurrent) &mdash; Three agents run simultaneously: risk assessment, document analysis, and compliance mapping. They are independent and can work at the same time, so we use Go's <code>errgroup</code> to run them as concurrent goroutines.</li>
-    <li><strong>Phase 3: Report Generation</strong> (sequential) &mdash; The report agent takes all three analysis results and synthesizes the final report. This must wait for all analysis to complete.</li>
-  </ol>
-
-  <div class="diagram">                    ┌────────────────────┐
-                    │   API Gateway       │
-                    │   (net/http + Chi)  │
-                    └────────┬───────────┘
-                             │
-                    ┌────────▼───────────┐
-                    │  TPRM Orchestrator  │
-                    │  (Supervisor Agent) │
-                    └────────┬───────────┘
-                             │
-           ┌─────────────────┼─────────────────┐
-           │                 │                 │
-  ┌────────▼─────┐  ┌───────▼──────┐  ┌──────▼───────┐
-  │ Risk Assessor│  │ Doc Analyzer │  │  Compliance  │
-  │    Agent     │  │    Agent     │  │    Agent     │
-  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-         │                 │                 │
-    ┌────┴────┐       ┌────┴────┐       ┌────┴────┐
-    │  Tools  │       │  Tools  │       │  Tools  │
-    │-DB query│       │-PDF parse│      │-Framework│
-    │-API call│       │-OCR     │       │ mapping │
-    │-Scoring │       │-Extract │       │-Gap check│
-    └─────────┘       └─────────┘       └─────────┘
-         │                 │                 │
-         └─────────────────┼─────────────────┘
-                           │
-                  ┌────────▼───────────┐
-                  │   Report Agent     │
-                  │ (merges all data)  │
-                  └────────┬───────────┘
-                           │
-              ┌────────────┼────────────┐
-              │            │            │
-         ┌────▼───┐  ┌────▼───┐  ┌────▼────┐
-         │ Redis  │  │Postgres│  │   S3    │
-         │(state) │  │(persist│  │(reports)│
-         └────────┘  └────────┘  └─────────┘</div>
-
-  <h3>The TPRM Orchestrator</h3>
-  <p>The orchestrator is the conductor of the orchestra. It knows which agents to call, in what order, and how to handle failures. It coordinates the three-phase pipeline described above, passing data between phases and collecting results.</p>
-
-<pre><code><span class="kw">import</span> (
-    <span class="str">"context"</span>                            <span class="cmt">// for cancellation and timeout propagation</span>
-    <span class="str">"fmt"</span>                                <span class="cmt">// for error message formatting</span>
-
-    <span class="str">"golang.org/x/sync/errgroup"</span>          <span class="cmt">// for running goroutines with error collection</span>
-)
-
-<span class="cmt">// TPRMOrchestrator coordinates all TPRM agents in a three-phase pipeline.</span>
-<span class="cmt">// Phase 1: Intake (sequential), Phase 2: Analysis (parallel), Phase 3: Report (sequential).</span>
-<span class="kw">type</span> <span class="typ">TPRMOrchestrator</span> <span class="kw">struct</span> {
-    intake     Agent                     <span class="cmt">// processes vendor data and classifies tier</span>
-    riskAgent  Agent                     <span class="cmt">// evaluates risk across multiple dimensions</span>
-    docAgent   Agent                     <span class="cmt">// analyzes vendor-submitted documents</span>
-    compliance Agent                     <span class="cmt">// maps findings to compliance frameworks</span>
-    reporter   Agent                     <span class="cmt">// synthesizes everything into a final report</span>
-    memory     MemoryStore               <span class="cmt">// stores conversation history and past assessments</span>
-}
-
-<span class="cmt">// RunAssessment executes a complete vendor assessment through all three phases.</span>
-<span class="cmt">// This is the main entry point — call this to assess a vendor end-to-end.</span>
-<span class="kw">func</span> (o *<span class="typ">TPRMOrchestrator</span>) <span class="fn">RunAssessment</span>(ctx context.Context, req AssessmentRequest) (*Report, <span class="typ">error</span>) {
-    <span class="cmt">// Start a tracing span for the entire assessment</span>
-    ctx, span := tracer.Start(ctx, <span class="str">"tprm.full_assessment"</span>)
-    <span class="kw">defer</span> span.End()                     <span class="cmt">// end the span when this function returns</span>
-
-    <span class="cmt">// ─── Phase 1: Intake (must complete before analysis begins) ───</span>
-    <span class="cmt">// The intake agent processes raw vendor data, extracts metadata,</span>
-    <span class="cmt">// and classifies the vendor into a risk tier.</span>
-    intakeResult, err := o.intake.Run(ctx, []Message{
-        {Role: <span class="str">"user"</span>, Content: fmt.Sprintf(<span class="str">"Process vendor intake for: %s"</span>, req.VendorID)},
-    })
-    <span class="kw">if</span> err != <span class="kw">nil</span> {
-        <span class="kw">return</span> <span class="kw">nil</span>, fmt.Errorf(<span class="str">"intake failed: %w"</span>, err)  <span class="cmt">// can't proceed without intake</span>
-    }
-
-    <span class="cmt">// ─── Phase 2: Parallel Analysis (three agents run simultaneously) ───</span>
-    <span class="cmt">// errgroup manages multiple goroutines and collects the first error.</span>
-    <span class="cmt">// If any agent fails, gCtx is cancelled, stopping the others.</span>
-    g, gCtx := errgroup.WithContext(ctx) <span class="cmt">// create an error group with shared context</span>
-
-    <span class="cmt">// These variables will hold results from each parallel agent.</span>
-    <span class="cmt">// Each goroutine writes to its own variable — no data races.</span>
-    <span class="kw">var</span> riskResult, docResult, complianceResult Response
-
-    <span class="cmt">// Launch the risk assessment agent in its own goroutine</span>
-    g.Go(<span class="kw">func</span>() <span class="typ">error</span> {
-        <span class="kw">var</span> err <span class="typ">error</span>                    <span class="cmt">// local error variable for this goroutine</span>
-        riskResult, err = o.riskAgent.Run(gCtx, intakeResult.Messages)
-        <span class="kw">return</span> err                       <span class="cmt">// errgroup collects this error</span>
-    })
-
-    <span class="cmt">// Launch the document analyzer agent in its own goroutine</span>
-    g.Go(<span class="kw">func</span>() <span class="typ">error</span> {
-        <span class="kw">var</span> err <span class="typ">error</span>                    <span class="cmt">// local error variable for this goroutine</span>
-        docResult, err = o.docAgent.Run(gCtx, intakeResult.Messages)
-        <span class="kw">return</span> err                       <span class="cmt">// errgroup collects this error</span>
-    })
-
-    <span class="cmt">// Launch the compliance agent in its own goroutine</span>
-    g.Go(<span class="kw">func</span>() <span class="typ">error</span> {
-        <span class="kw">var</span> err <span class="typ">error</span>                    <span class="cmt">// local error variable for this goroutine</span>
-        complianceResult, err = o.compliance.Run(gCtx, intakeResult.Messages)
-        <span class="kw">return</span> err                       <span class="cmt">// errgroup collects this error</span>
-    })
-
-    <span class="cmt">// Wait for all three agents to finish. Returns the first error (if any).</span>
-    <span class="kw">if</span> err := g.Wait(); err != <span class="kw">nil</span> {
-        <span class="kw">return</span> <span class="kw">nil</span>, fmt.Errorf(<span class="str">"parallel analysis failed: %w"</span>, err)
-    }
-
-    <span class="cmt">// ─── Phase 3: Report Generation (needs all results) ───</span>
-    <span class="cmt">// Combine the three agent outputs into a single message list</span>
-    combined := mergeResults(riskResult, docResult, complianceResult)
-
-    <span class="cmt">// The report agent reads all findings and writes the final report</span>
-    reportResult, err := o.reporter.Run(ctx, combined)
-    <span class="kw">if</span> err != <span class="kw">nil</span> {
-        <span class="kw">return</span> <span class="kw">nil</span>, fmt.Errorf(<span class="str">"report generation failed: %w"</span>, err)
-    }
-
-    <span class="cmt">// Parse the report agent's text output into our structured Report type</span>
-    <span class="kw">return</span> parseReport(reportResult)
-}
-
-<span class="cmt">// mergeResults combines outputs from parallel agents into a single message list.</span>
-<span class="cmt">// The report agent receives all of these as context for writing its report.</span>
-<span class="kw">func</span> <span class="fn">mergeResults</span>(results ...Response) []Message {
-    <span class="kw">var</span> combined []Message                <span class="cmt">// accumulate all messages here</span>
-    <span class="kw">for</span> _, r := <span class="kw">range</span> results {          <span class="cmt">// iterate through each agent's response</span>
-        combined = <span class="kw">append</span>(combined, r.Messages...)  <span class="cmt">// append all messages from this response</span>
-    }
-    <span class="kw">return</span> combined                      <span class="cmt">// return the unified message list</span>
-}</code></pre>
-
-  <h3>Wiring Everything Together in main.go</h3>
-  <p>This is where all the pieces connect. The <code>main</code> function is the assembly point: it loads configuration, creates clients, sets up tools, builds agents, wraps them with guardrails, creates the orchestrator, and starts the HTTP server. Everything is wired explicitly &mdash; you can trace every dependency by reading this one function.</p>
-
-<pre><code><span class="kw">package</span> main                            <span class="cmt">// entry point of the application</span>
-
-<span class="kw">import</span> (
-    <span class="str">"context"</span>                            <span class="cmt">// for cancellation and signal handling</span>
-    <span class="str">"fmt"</span>                                <span class="cmt">// for string formatting</span>
-    <span class="str">"log"</span>                                <span class="cmt">// for fatal errors during startup</span>
-    <span class="str">"log/slog"</span>                           <span class="cmt">// for structured logging throughout the app</span>
-    <span class="str">"net/http"</span>                           <span class="cmt">// for the HTTP server</span>
-    <span class="str">"os"</span>                                 <span class="cmt">// for environment variables and stdout</span>
-    <span class="str">"os/signal"</span>                          <span class="cmt">// for catching shutdown signals</span>
-    <span class="str">"syscall"</span>                            <span class="cmt">// for SIGINT and SIGTERM signal types</span>
-    <span class="str">"time"</span>                               <span class="cmt">// for timeouts and durations</span>
-)
-
-<span class="kw">func</span> <span class="fn">main</span>() {
-    <span class="cmt">// ─── Step 1: Set up structured logging ───</span>
-    <span class="cmt">// JSON handler outputs machine-readable logs for production.</span>
-    logger := slog.New(slog.NewJSONHandler(os.Stdout, &amp;slog.HandlerOptions{
-        Level: slog.LevelInfo,           <span class="cmt">// log Info and above (Info, Warn, Error)</span>
-    }))
-    slog.SetDefault(logger)              <span class="cmt">// make this the global default logger</span>
-
-    <span class="cmt">// ─── Step 2: Load configuration from environment variables ───</span>
-    cfg, err := loadConfig()             <span class="cmt">// reads OPENAI_API_KEY, REDIS_URL, PORT, etc.</span>
-    <span class="kw">if</span> err != <span class="kw">nil</span> {
-        log.Fatalf(<span class="str">"failed to load config: %v"</span>, err)  <span class="cmt">// crash if config is invalid</span>
-    }
-
-    <span class="cmt">// ─── Step 3: Create the LLM client with rate limiting and cost tracking ───</span>
-    <span class="cmt">// We wrap the base client in layers: OpenAI -> Rate Limited -> Cost Metered.</span>
-    <span class="cmt">// Each layer adds behavior without modifying the layer below it.</span>
-    baseClient := NewOpenAIClient(cfg.OpenAIKey)  <span class="cmt">// raw OpenAI API client</span>
-    rateLimited := NewRateLimitedLLM(baseClient, <span class="num">10</span>)  <span class="cmt">// max 10 requests per second</span>
-    llmClient := &amp;MeteredLLM{client: rateLimited}    <span class="cmt">// tracks token usage and cost</span>
-
-    <span class="cmt">// ─── Step 4: Set up the tool registry ───</span>
-    <span class="cmt">// Register all tools that agents can use. Each tool is a specific capability.</span>
-    registry := NewToolRegistry()        <span class="cmt">// create empty registry</span>
-    registry.Register(                   <span class="cmt">// register all available tools</span>
-        NewLookupVendorTool(cfg),        <span class="cmt">// tool: fetch vendor data from database</span>
-        NewSearchAssessmentsTool(cfg),   <span class="cmt">// tool: search past assessments</span>
-        NewBreachDatabaseTool(cfg),      <span class="cmt">// tool: check breach records</span>
-        NewParseDocumentTool(),          <span class="cmt">// tool: parse PDF/XLSX documents</span>
-        NewFrameworkControlsTool(),      <span class="cmt">// tool: look up compliance framework controls</span>
-    )
-
-    <span class="cmt">// ─── Step 5: Create agents with their specific configurations ───</span>
-    riskAgent := NewRiskAssessmentAgent(llmClient, registry)   <span class="cmt">// risk scoring</span>
-    docAgent := NewDocAnalyzerAgent(llmClient, registry)       <span class="cmt">// document analysis</span>
-    complianceAgent := NewComplianceAgent(llmClient, registry) <span class="cmt">// compliance mapping</span>
-    reportAgent := NewReportAgent(llmClient)                   <span class="cmt">// report writing</span>
-
-    <span class="cmt">// ─── Step 6: Wrap agents with guardrails ───</span>
-    <span class="cmt">// Input guardrails check for PII before data reaches the agent.</span>
-    <span class="cmt">// Output guardrails validate the agent's response format.</span>
-    piiGuard := NewPIIGuardrail()        <span class="cmt">// detects SSNs, credit cards, emails</span>
-    inputGuards := []Guardrail{piiGuard} <span class="cmt">// apply PII detection to all inputs</span>
-
-    <span class="cmt">// Wrap each agent with the guardrail middleware</span>
-    guardedRisk := WithGuardrails(inputGuards, <span class="kw">nil</span>)(riskAgent)
-    guardedDoc := WithGuardrails(inputGuards, <span class="kw">nil</span>)(docAgent)
-    guardedCompliance := WithGuardrails(inputGuards, <span class="kw">nil</span>)(complianceAgent)
-
-    <span class="cmt">// ─── Step 7: Create the memory store ───</span>
-    memory := NewRedisMemory(cfg.RedisURL, <span class="num">24</span>*time.Hour)  <span class="cmt">// sessions expire after 24h</span>
-
-    <span class="cmt">// ─── Step 8: Build the orchestrator with all components ───</span>
-    orchestrator := &amp;TPRMOrchestrator{
-        riskAgent:  guardedRisk,         <span class="cmt">// guarded risk assessment agent</span>
-        docAgent:   guardedDoc,          <span class="cmt">// guarded document analysis agent</span>
-        compliance: guardedCompliance,   <span class="cmt">// guarded compliance mapping agent</span>
-        reporter:   reportAgent,         <span class="cmt">// report agent (no guardrails needed — output only)</span>
-        memory:     memory,              <span class="cmt">// Redis-backed conversation memory</span>
-    }
-
-    <span class="cmt">// ─── Step 9: Set up HTTP routes ───</span>
-    mux := http.NewServeMux()            <span class="cmt">// create the HTTP request router</span>
-
-    <span class="cmt">// POST /assess — start a new vendor assessment</span>
-    mux.HandleFunc(<span class="str">"POST /assess"</span>, <span class="kw">func</span>(w http.ResponseWriter, r *http.Request) {
-        <span class="cmt">// Handler implementation: decode request, call orchestrator, encode response</span>
-        slog.Info(<span class="str">"assessment requested"</span>, <span class="str">"method"</span>, r.Method, <span class="str">"path"</span>, r.URL.Path)
-    })
-
-    <span class="cmt">// GET /health — health check for load balancers</span>
-    mux.HandleFunc(<span class="str">"GET /health"</span>, <span class="kw">func</span>(w http.ResponseWriter, r *http.Request) {
-        w.WriteHeader(http.StatusOK)     <span class="cmt">// return 200 OK to indicate the server is healthy</span>
-        fmt.Fprintln(w, <span class="str">"ok"</span>)            <span class="cmt">// body content for the health check</span>
-    })
-
-    <span class="cmt">// ─── Step 10: Start the server with graceful shutdown ───</span>
-    server := &amp;http.Server{
-        Addr:    fmt.Sprintf(<span class="str">":%d"</span>, cfg.Port),  <span class="cmt">// listen on configured port</span>
-        Handler: mux,                    <span class="cmt">// use our router</span>
-    }
-
-    <span class="cmt">// Listen for OS shutdown signals (Ctrl+C or docker stop)</span>
-    ctx, cancel := context.WithCancel(context.Background())
-    sigCh := <span class="kw">make</span>(<span class="kw">chan</span> os.Signal, <span class="num">1</span>)    <span class="cmt">// buffered channel for one signal</span>
-    signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)  <span class="cmt">// subscribe to signals</span>
-
-    <span class="cmt">// Goroutine that waits for a shutdown signal and cancels the context</span>
-    <span class="kw">go</span> <span class="kw">func</span>() {
-        sig := &lt;-sigCh                  <span class="cmt">// block until a signal arrives</span>
-        slog.Info(<span class="str">"received signal, shutting down"</span>, <span class="str">"signal"</span>, sig)
-        cancel()                         <span class="cmt">// cancel context — signals all goroutines to stop</span>
-    }()
-
-    <span class="cmt">// Start the HTTP server in a goroutine so main can listen for shutdown</span>
-    <span class="kw">go</span> <span class="kw">func</span>() {
-        slog.Info(<span class="str">"starting TPRM agent system"</span>,
-            <span class="str">"port"</span>, cfg.Port,             <span class="cmt">// which port we're listening on</span>
-            <span class="str">"model"</span>, cfg.LLMModel,        <span class="cmt">// which LLM model is configured</span>
-        )
-        <span class="kw">if</span> err := server.ListenAndServe(); err != http.ErrServerClosed {
-            slog.Error(<span class="str">"server error"</span>, <span class="str">"error"</span>, err)  <span class="cmt">// unexpected server error</span>
-        }
-    }()
-
-    &lt;-ctx.Done()                         <span class="cmt">// block here until shutdown signal cancels context</span>
-
-    <span class="cmt">// Give in-progress assessments 30 seconds to finish</span>
-    shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), <span class="num">30</span>*time.Second)
-    <span class="kw">defer</span> shutdownCancel()               <span class="cmt">// clean up the timeout context</span>
-
-    server.Shutdown(shutdownCtx)         <span class="cmt">// gracefully stop accepting new requests</span>
-    slog.Info(<span class="str">"server stopped gracefully"</span>) <span class="cmt">// confirm clean shutdown</span>
-}</code></pre>
-
-  <div class="callout pattern">
-    <div class="callout-title">Architecture Principles</div>
-    <ol>
-      <li><strong>Single Responsibility Agents</strong> &mdash; Each agent does one thing well. No "god agents" that try to do everything.</li>
-      <li><strong>Idempotent Tool Execution</strong> &mdash; Tools should be safe to retry. LLM calls are non-deterministic, so retries are common.</li>
-      <li><strong>Timeout Everything</strong> &mdash; <code>context.WithTimeout</code> for every LLM call, tool execution, and agent run. Never wait forever.</li>
-      <li><strong>Graceful Degradation</strong> &mdash; If one agent fails, still produce a partial report. Something is better than nothing.</li>
-      <li><strong>Cost Tracking</strong> &mdash; Track token usage per agent. Set budget limits. Alert when costs spike.</li>
-      <li><strong>Explicit Wiring</strong> &mdash; All dependencies are visible in <code>main()</code>. No hidden magic. You can trace every connection by reading the code.</li>
-    </ol>
-  </div>
-</div>
-
 <!-- ════════════════ RESOURCES ════════════════ -->
 <div class="section" id="resources">
-  <div class="section-number">Chapter 26</div>
+  <div class="section-number">Chapter 23</div>
   <h2>Essential Resources</h2>
 
   <p>The resources below are organized from foundational (start here if you are new to Go) to advanced (for production agent systems). One of Go's greatest strengths is the quality of its documentation. Every function, type, and package in the standard library has runnable examples in the Go Playground. When in doubt, read the standard library source code &mdash; it is some of the best Go code ever written and serves as the de facto style guide.</p>
@@ -7365,46 +6708,21 @@ Cite specific evidence from the input data.`</span>,
     <li><strong>LangChain Go (tmc/langchaingo)</strong> &mdash; Go port of the LangChain framework (useful for reference)</li>
   </ul>
 
-  <h3>TPRM-Specific Resources</h3>
-  <ul>
-    <li><strong>NIST Cybersecurity Framework (CSF)</strong> &mdash; The five functions (Identify, Protect, Detect, Respond, Recover) that agents map findings to</li>
-    <li><strong>SOC 2 Trust Service Criteria</strong> &mdash; The security, availability, processing integrity, confidentiality, and privacy controls that the compliance agent evaluates</li>
-    <li><strong>ISO 27001 Annex A Controls</strong> &mdash; The 93 controls (2022 version) that form the basis of information security assessment</li>
-    <li><strong>Shared Assessments SIG Questionnaire</strong> &mdash; Industry-standard vendor assessment questionnaire that intake agents process</li>
-    <li><strong>CAIQ (Consensus Assessments Initiative Questionnaire)</strong> &mdash; Cloud-focused security questionnaire from the Cloud Security Alliance</li>
-  </ul>
-
-  <h3>TPRM-Specific Libraries and Services</h3>
-  <table class="comparison">
-    <thead>
-      <tr><th>Need</th><th>Solution</th><th>Purpose in TPRM</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Document Parsing</td><td class="go">unidoc/unipdf + tealeg/xlsx</td><td>Extract data from vendor SOC 2 PDFs and questionnaire spreadsheets</td></tr>
-      <tr><td>Email Integration</td><td class="go">emersion/go-imap</td><td>Receive vendor responses via email attachments</td></tr>
-      <tr><td>Vector Database</td><td class="go">pgvector/pgvector-go</td><td>Semantic search over past assessments for historical context</td></tr>
-      <tr><td>Task Queue</td><td class="go">hibiken/asynq (Redis-based)</td><td>Queue and process vendor assessments asynchronously</td></tr>
-      <tr><td>Scheduling</td><td class="go">robfig/cron</td><td>Periodic vendor re-assessments and certificate expiry checks</td></tr>
-      <tr><td>Webhooks</td><td class="go">standard net/http</td><td>Receive real-time notifications from breach monitoring services</td></tr>
-      <tr><td>PDF Generation</td><td class="go">jung-kurt/gofpdf</td><td>Generate formatted vendor risk reports for stakeholders</td></tr>
-    </tbody>
-  </table>
-
   <h3>Recommended Learning Path</h3>
-  <p>This 8-week plan assumes you are spending 1-2 hours per day. Each week has a specific focus area and a concrete deliverable. The deliverables build on each other, culminating in a complete TPRM agent system.</p>
+  <p>This 8-week plan assumes you are spending 1-2 hours per day. Each week has a specific focus area and a concrete deliverable. The deliverables build on each other, culminating in a complete multi-agent system.</p>
 
   <table class="comparison">
     <thead>
       <tr><th>Week</th><th>Focus</th><th>Deliverable</th></tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td class="go">Go syntax, types, structs, interfaces</td><td>CLI tool that parses a vendor CSV</td></tr>
-      <tr><td>2</td><td class="go">Error handling, packages, testing</td><td>CRUD REST API for vendors with tests</td></tr>
-      <tr><td>3</td><td class="go">Goroutines, channels, context</td><td>Concurrent vendor data fetcher</td></tr>
+      <tr><td>1</td><td class="go">Go syntax, types, structs, interfaces</td><td>CLI tool that parses a CSV and prints formatted output</td></tr>
+      <tr><td>2</td><td class="go">Error handling, packages, testing</td><td>CRUD REST API with tests</td></tr>
+      <tr><td>3</td><td class="go">Goroutines, channels, context</td><td>Concurrent data fetcher</td></tr>
       <tr><td>4</td><td class="go">Concurrency patterns, errgroup</td><td>Worker pool processing pipeline</td></tr>
       <tr><td>5</td><td class="go">LLM integration, tool calling</td><td>Single agent with tools</td></tr>
       <tr><td>6</td><td class="go">Multi-agent orchestration</td><td>Sequential + parallel orchestrators</td></tr>
-      <tr><td>7</td><td class="go">Memory, guardrails, observability</td><td>Full TPRM pipeline with tracing</td></tr>
+      <tr><td>7</td><td class="go">Memory, guardrails, observability</td><td>Full agent pipeline with tracing</td></tr>
       <tr><td>8</td><td class="go">Production patterns, deployment</td><td>Dockerized, load-tested system</td></tr>
     </tbody>
   </table>
@@ -7417,7 +6735,7 @@ Cite specific evidence from the input data.`</span>,
 
 <!-- ════════════════ QUICK REFERENCE ════════════════ -->
 <div class="section" id="quick-reference">
-  <div class="section-number">Chapter 27</div>
+  <div class="section-number">Chapter 24</div>
   <h2>Go Quick Reference</h2>
 
   <p>A concise cheat sheet of the most common Go operations you will reach for daily. Each example is self-contained with a brief explanation.</p>
